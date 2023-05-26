@@ -10,10 +10,12 @@
 class UInputMappingContext;
 class UInputAction;
 class UCameraComponent;
-class UMovementComponent;
 class USphereComponent;
-class UNiagaraComponent;
 class UStaticMeshComponent;
+class UMovementComponent;
+class UNiagaraComponent;
+class UNiagaraSystem;
+class USoundBase;
 
 UCLASS()
 class LIFEINPARTICLES_API APlayerPawn : public APawn
@@ -29,6 +31,9 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	/*
+	INPUT
+	*/
 	UPROPERTY(EditAnywhere, Category = Input)
 		UInputMappingContext* PlayerContext;
 
@@ -45,18 +50,43 @@ protected:
 	void PauseGame(const FInputActionValue& Value);
 	void Shoot(const FInputActionValue& Value);
 
-	UPROPERTY()
+	/*
+	COMPONENTS
+	*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pawn Components", meta = (AllowPrivateAccess = "true"))
 		USphereComponent* ShipSphereComp;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pawn Components", meta = (AllowPrivateAccess = "true"))
 		UStaticMeshComponent* ShipMesh;
 
 private:
-	UPROPERTY(VisibleAnywhere)
-		UCameraComponent* ViewCamera;
 
-	APlayerController* PlayerController;
+	UPROPERTY(EditAnywhere)
+		UCameraComponent* ViewCamera;
 
 	bool bIsPaused = false;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pawn Components", meta = (AllowPrivateAccess = "true"))
+		USceneComponent* ProjectileSpawnPoint;
+
+	UPROPERTY()
+		UMovementComponent* MovementComponent;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float Speed = 200.f;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float TurnRate = 30.f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+		TSubclassOf<class AProjectile> ProjectileClass;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+		UNiagaraSystem* DeathParticles;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+		USoundBase* DeathSound;
+
+	UPROPERTY()
+		APlayerController* PlayerController;
 };

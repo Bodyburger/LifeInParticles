@@ -8,6 +8,10 @@
 #include "EnhancedInputSubsystems.h"
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h" 
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
+#include "Sound/SoundBase.h"
+#include "GameFramework/MovementComponent.h"
 
 APlayerPawn::APlayerPawn()
 {
@@ -16,7 +20,7 @@ APlayerPawn::APlayerPawn()
 	ViewCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ViewCamera"));
 	ViewCamera->SetupAttachment(GetRootComponent());
 	ViewCamera->SetProjectionMode(ECameraProjectionMode::Orthographic);
-	ViewCamera->SetOrthoWidth(5000.f);
+	ViewCamera->SetOrthoWidth(7500.f);
 	ViewCamera->bUsePawnControlRotation = false;
 
 	ShipSphereComp = CreateDefaultSubobject<USphereComponent>(TEXT("ShipSphereComponent"));
@@ -25,6 +29,10 @@ APlayerPawn::APlayerPawn()
 	ShipMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ShipMeshComponent"));
 	ShipMesh->SetupAttachment(GetRootComponent());
 
+	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("ProjectileSpawnPoint"));
+	ProjectileSpawnPoint->SetupAttachment(GetRootComponent());
+
+	MovementComponent = CreateDefaultSubobject<UMovementComponent>(TEXT("MovementComponent"));
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 }
@@ -65,9 +73,9 @@ void APlayerPawn::Move(const FInputActionValue& Value)
 	const FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
 
 	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-	AddMovementInput(ForwardDirection, MovementVector.Y);
+	AddMovementInput(ForwardDirection, MovementVector.Y, true);
 	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-	AddMovementInput(RightDirection, MovementVector.X);
+	AddMovementInput(RightDirection, MovementVector.X, true);
 }
 
 void APlayerPawn::PauseGame(const FInputActionValue& Value)

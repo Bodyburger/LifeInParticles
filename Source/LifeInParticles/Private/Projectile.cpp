@@ -2,26 +2,38 @@
 
 
 #include "Projectile.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h" 
 
-// Sets default values
 AProjectile::AProjectile()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
-// Called when the game starts or when spawned
 void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	if (ProjectileEffect)
+	{
+		// This spawns the chosen effect on the owning WeaponMuzzle SceneComponent
+		UNiagaraComponent* NiagaraComp = UNiagaraFunctionLibrary::SpawnSystemAttached(
+			ProjectileEffect,
+			 GetRootComponent(),
+			  NAME_None,
+			   FVector(0.f),
+			    FRotator(0.f),
+				 EAttachLocation::Type::KeepRelativeOffset,
+				  true);
+		// Parameters can be set like this (see documentation for further info) - 
+		// the names and type must match the user exposed parameter in the Niagara System
+		NiagaraComp->SetNiagaraVariableFloat(FString("StrengthCoef"), 1.f);
+	}
+
 }
 
-// Called every frame
 void AProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
-
