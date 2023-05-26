@@ -1,0 +1,106 @@
+[
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\LifeInParticles.Build.cs",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\LifeInParticles.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\LifeInParticles.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\LifeInParticlesGameModeBase.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\LifeInParticlesGameModeBase.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\Private\\BigBangManager.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\Private\\LifeInParticlesGameMode.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\Private\\Player\\PlayerPawn.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\Private\\Projectile.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\Public\\BigBangManager.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\Public\\LifeInParticlesGameMode.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\Public\\Player\\PlayerPawn.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\Source\\LifeInParticles\\Public\\Projectile.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\LifeInParticlesGit\\LifeInParticles\\.vscode\\compileCommands_Default\\LifeInParticles.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Unreal Engine\\UE_5.1\\Engine\\Source"
+	}
+]
