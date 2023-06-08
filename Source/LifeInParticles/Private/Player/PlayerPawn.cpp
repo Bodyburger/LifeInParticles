@@ -11,28 +11,29 @@
 #include "NiagaraFunctionLibrary.h"
 #include "NiagaraComponent.h"
 #include "Sound/SoundBase.h"
-#include "GameFramework/MovementComponent.h"
+#include "GameFramework/PawnMovementComponent.h" 
+#include "Kismet/GameplayStatics.h" 
+#include "Projectile.h"
 
 APlayerPawn::APlayerPawn()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
 	ViewCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ViewCamera"));
-	ViewCamera->SetupAttachment(GetRootComponent());
 	ViewCamera->SetProjectionMode(ECameraProjectionMode::Orthographic);
 	ViewCamera->SetOrthoWidth(7500.f);
 	ViewCamera->bUsePawnControlRotation = false;
 
 	ShipSphereComp = CreateDefaultSubobject<USphereComponent>(TEXT("ShipSphereComponent"));
-	ShipSphereComp->SetupAttachment(GetRootComponent());
+	RootComponent = ShipSphereComp;
 
 	ShipMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ShipMeshComponent"));
-	ShipMesh->SetupAttachment(GetRootComponent());
+	ShipMesh->SetupAttachment(ShipSphereComp);
 
 	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("ProjectileSpawnPoint"));
-	ProjectileSpawnPoint->SetupAttachment(GetRootComponent());
+	ProjectileSpawnPoint->SetupAttachment(ShipSphereComp);
 
-	MovementComponent = CreateDefaultSubobject<UMovementComponent>(TEXT("MovementComponent"));
+	MovementComponent = CreateDefaultSubobject<UPawnMovementComponent>(TEXT("MovementComponent"));
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 }
@@ -62,20 +63,21 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	{
 		EnhancedInputComponent->BindAction(MovementAction, ETriggerEvent::Triggered, this, &APlayerPawn::Move);
 		EnhancedInputComponent->BindAction(PauseGameAction, ETriggerEvent::Triggered, this, &APlayerPawn::PauseGame);
+		EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, this, &APlayerPawn::Shoot);
 	}
 }
 
 void APlayerPawn::Move(const FInputActionValue& Value)
 {
+	FVector DeltaLocation = FVector::ZeroVector;
 	const FVector2D MovementVector = Value.Get<FVector2D>();
 
-	const FRotator Rotation = Controller->GetControlRotation();
-	const FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
+	DeltaLocation.X = MovementVector.X * UGameplayStatics::GetWorldDeltaSeconds(this) * Speed;
+	AddActorLocalOffset(DeltaLocation, true);
 
-	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-	AddMovementInput(ForwardDirection, MovementVector.Y, true);
-	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-	AddMovementInput(RightDirection, MovementVector.X, true);
+	FRotator DeltaRotation = FRotator::ZeroRotator;
+	DeltaRotation.Yaw = MovementVector.Y * UGameplayStatics::GetWorldDeltaSeconds(this) * TurnRate;
+	AddActorLocalRotation(DeltaRotation, true);
 }
 
 void APlayerPawn::PauseGame(const FInputActionValue& Value)
@@ -88,7 +90,15 @@ void APlayerPawn::PauseGame(const FInputActionValue& Value)
 }
 void APlayerPawn::Shoot(const FInputActionValue& Value)
 {
+	FVector SpawnLocation = ProjectileSpawnPoint->GetComponentLocation();
+	FRotator SpawnRotation = ProjectileSpawnPoint->GetComponentRotation();
+	FActorSpawnParameters SpawnInfo;
 
+	AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnInfo);
+	if (Projectile)
+	{
+		Projectile->SetOwner(this);
+	}
 }
 
 void APlayerPawn::Tick(float DeltaTime)

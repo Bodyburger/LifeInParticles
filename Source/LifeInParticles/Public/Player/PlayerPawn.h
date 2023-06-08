@@ -12,10 +12,12 @@ class UInputAction;
 class UCameraComponent;
 class USphereComponent;
 class UStaticMeshComponent;
-class UMovementComponent;
+class UPawnMovementComponent;
 class UNiagaraComponent;
 class UNiagaraSystem;
 class USoundBase;
+
+class AProjectile;
 
 UCLASS()
 class LIFEINPARTICLES_API APlayerPawn : public APawn
@@ -60,7 +62,6 @@ protected:
 		UStaticMeshComponent* ShipMesh;
 
 private:
-
 	UPROPERTY(EditAnywhere)
 		UCameraComponent* ViewCamera;
 
@@ -70,7 +71,7 @@ private:
 		USceneComponent* ProjectileSpawnPoint;
 
 	UPROPERTY()
-		UMovementComponent* MovementComponent;
+		UPawnMovementComponent* MovementComponent;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float Speed = 200.f;
@@ -79,7 +80,7 @@ private:
 		float TurnRate = 30.f;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
-		TSubclassOf<class AProjectile> ProjectileClass;
+		TSubclassOf<AProjectile> ProjectileClass;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 		UNiagaraSystem* DeathParticles;
@@ -89,4 +90,5 @@ private:
 
 	UPROPERTY()
 		APlayerController* PlayerController;
+
 };

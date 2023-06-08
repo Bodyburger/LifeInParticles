@@ -1,28 +1,33 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "BigBangManager.generated.h"
+#include "BigBangmanager.generated.h"
 
-class UNiagaraComponent;
+class ASpaceObject;
 
 UCLASS()
 class LIFEINPARTICLES_API ABigBangManager : public AActor
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	ABigBangManager();
-	virtual void Tick(float DeltaTime) override;
+    ABigBangManager();
 
-	// UFUNCTION()
-	// void SpawnRocks();
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BigBangManager")
+    TSubclassOf<ASpaceObject> SpaceObject;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BigBangManager")
+    float SpawnInterval;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BigBangManager")
+    float SpawnRadius;
 
 protected:
-	virtual void BeginPlay() override;
+    virtual void BeginPlay() override;
 
 private:
-	// TODO: create ARock script to spawn
+    void SpawnGameObject();
+
+    FTimerHandle SpawnTimerHandle;
 };

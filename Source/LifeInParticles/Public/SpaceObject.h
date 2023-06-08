@@ -4,20 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Projectile.generated.h"
+#include "SpaceObject.generated.h"
 
 class USphereComponent;
+class UStaticMeshComponent;
 class UNiagaraSystem;
-class UNiagaraComponent;
-class UProjectileMovementComponent;
 
 UCLASS()
-class LIFEINPARTICLES_API AProjectile : public AActor
+class LIFEINPARTICLES_API ASpaceObject : public AActor
 {
 	GENERATED_BODY()
 
 public:
-	AProjectile();
+	ASpaceObject();
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION()
@@ -29,23 +28,25 @@ public:
 			bool bFromSweep,
 			const FHitResult& SweepResult);
 
+	UPROPERTY(EditAnywhere, Category = "Scaling")
+		float MaxScale;
+
+	UPROPERTY(EditAnywhere, Category = "Scaling")
+		float AgingRate;
+
 protected:
 	virtual void BeginPlay() override;
-
-	UPROPERTY(VisibleAnywhere)
-		UProjectileMovementComponent* ProjectileComponent;
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 		USphereComponent* SphereComp;
 
-	UPROPERTY(EditAnywhere)
-		UNiagaraSystem* ProjectileEffect;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+		UStaticMeshComponent* BaseMesh;
 
 	UPROPERTY(EditAnywhere)
 		UNiagaraSystem* DestroyEffect;
 
-	// Should be used only if Projectile Component isn't used in BP
-	// UPROPERTY(EditAnywhere, Category = "Movement")
-	// 	float Speed = 4000.f;
+	float CurrentScale;
+
 };
